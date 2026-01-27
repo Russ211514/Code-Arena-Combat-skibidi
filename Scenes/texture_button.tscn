@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://b2xgn7kfu62ix"]
+
+[ext_resource type="Texture2D" uid="uid://bxgr0by6uc5l5" path="res://Art Assets/html wizard/html wizard blue.png" id="1_pfu64"]
+
+[node name="TextureButton" type="TextureButton"]
+offset_left = 165.00002
+offset_top = 465.0
+offset_right = 214.00002
+offset_bottom = 520.0
+scale = Vector2(6, 6)
+texture_normal = ExtResource("1_pfu64")
+texture_pressed = ExtResource("1_pfu64")
+texture_hover = ExtResource("1_pfu64")
+texture_disabled = ExtResource("1_pfu64")
+texture_focused = ExtResource("1_pfu64")

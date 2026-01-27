@@ -1,0 +1,166 @@
+[gd_scene load_steps=15 format=3 uid="uid://dl7ijtea5htd7"]
+
+[ext_resource type="Script" uid="uid://ih6a02j5avg5" path="res://Scripts/battle_scene.gd" id="1_e5vbs"]
+[ext_resource type="Theme" uid="uid://2q3vbk6bmh2r" path="res://Themes/default_theme.tres" id="2_anwxn"]
+[ext_resource type="Script" uid="uid://b4h7jgw5xhajg" path="res://Scripts/background_sprite.gd" id="2_e5vbs"]
+[ext_resource type="PackedScene" uid="uid://cvj375674d1g6" path="res://Scenes/window_default.tscn" id="2_hdvqd"]
+[ext_resource type="PackedScene" uid="uid://b2xgn7kfu62ix" path="res://Scenes/texture_button.tscn" id="5_3gnqe"]
+[ext_resource type="Script" uid="uid://hwl1a3d4oayi" path="res://Scripts/options.gd" id="5_20f6w"]
+[ext_resource type="PackedScene" uid="uid://7cngnj2uueoh" path="res://Scenes/battle_enemy.tscn" id="6_gt16y"]
+[ext_resource type="PackedScene" uid="uid://cjbitdt03r8sc" path="res://Scenes/health_bar.tscn" id="8_w4764"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gt16y"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_20f6w"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_w4764"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ed262"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ms847"]
+
+[sub_resource type="Theme" id="Theme_gt16y"]
+Button/font_sizes/font_size = 40
+Button/styles/disabled = SubResource("StyleBoxEmpty_gt16y")
+Button/styles/focus = SubResource("StyleBoxEmpty_20f6w")
+Button/styles/hover = SubResource("StyleBoxEmpty_w4764")
+Button/styles/normal = SubResource("StyleBoxEmpty_ed262")
+Button/styles/pressed = SubResource("StyleBoxEmpty_ms847")
+
+[node name="Battle" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_e5vbs")
+
+[node name="Background_Sprite" type="Sprite2D" parent="."]
+position = Vector2(961.6667, 539.5)
+scale = Vector2(5.983333, 5.983333)
+script = ExtResource("2_e5vbs")
+
+[node name="BattleLayout" type="CanvasLayer" parent="."]
+
+[node name="Battle" type="Control" parent="BattleLayout"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_anwxn")
+
+[node name="Bottom" type="HBoxContainer" parent="BattleLayout/Battle"]
+custom_minimum_size = Vector2(870, 240)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -435.0
+offset_top = -240.0
+offset_right = 435.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="Enemy" parent="BattleLayout/Battle/Bottom" instance=ExtResource("2_hdvqd")]
+layout_mode = 2
+patch_margin_left = 10
+patch_margin_top = 10
+patch_margin_right = 10
+patch_margin_bottom = 10
+
+[node name="Player" parent="BattleLayout/Battle/Bottom" instance=ExtResource("2_hdvqd")]
+layout_mode = 2
+size_flags_stretch_ratio = 1.5
+patch_margin_left = 10
+patch_margin_top = 10
+patch_margin_right = 10
+patch_margin_bottom = 10
+
+[node name="Options" parent="BattleLayout/Battle" instance=ExtResource("2_hdvqd")]
+custom_minimum_size = Vector2(240, 240)
+layout_mode = 0
+offset_left = 622.0
+offset_top = 840.0
+offset_right = 862.0
+offset_bottom = 1080.0
+size_flags_stretch_ratio = 1.5
+patch_margin_left = 10
+patch_margin_top = 10
+patch_margin_right = 10
+patch_margin_bottom = 10
+
+[node name="Options" type="VBoxContainer" parent="BattleLayout/Battle/Options"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 25
+script = ExtResource("5_20f6w")
+
+[node name="Fight" type="Button" parent="BattleLayout/Battle/Options/Options"]
+layout_mode = 2
+focus_neighbor_bottom = NodePath("../Magic")
+theme = SubResource("Theme_gt16y")
+text = "FIGHT"
+
+[node name="Magic" type="Button" parent="BattleLayout/Battle/Options/Options"]
+layout_mode = 2
+text = "MAGIC"
+
+[node name="Defend" type="Button" parent="BattleLayout/Battle/Options/Options"]
+layout_mode = 2
+text = "DEFEND"
+
+[node name="Ultimate" type="Button" parent="BattleLayout/Battle/Options/Options"]
+layout_mode = 2
+text = "ULTIMATE"
+
+[node name="Player" type="Control" parent="BattleLayout/Battle"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="BattlePlayer" parent="BattleLayout/Battle/Player" instance=ExtResource("5_3gnqe")]
+layout_mode = 0
+offset_left = 232.0
+offset_top = 510.0
+offset_right = 281.0
+offset_bottom = 565.0
+
+[node name="Enemies" type="Control" parent="BattleLayout/Battle"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="BattleEnemy" parent="BattleLayout/Battle/Enemies" instance=ExtResource("6_gt16y")]
+layout_mode = 0
+anchors_preset = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 1397.0
+offset_top = 511.00003
+offset_right = 1446.0
+offset_bottom = 566.0
+grow_horizontal = 1
+grow_vertical = 1
+
+[node name="ProgressBar" parent="." instance=ExtResource("8_w4764")]
+layout_mode = 1
+offset_left = 191.0
+offset_top = 80.0
+offset_right = 817.0
+offset_bottom = 112.0
+
+[connection signal="button_focused" from="BattleLayout/Battle/Options/Options" to="." method="_on_options_button_focused"]
+[connection signal="button_pressed" from="BattleLayout/Battle/Options/Options" to="." method="_on_options_button_pressed"]

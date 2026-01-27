@@ -1,0 +1,48 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[GD-Sync]
+
+version="0.14"
+publicKey=""
+
+[application]
+
+config/name="Code Arena Combat Main"
+run/main_scene="uid://3e81xjs2ap81"
+config/features=PackedStringArray("4.5", "Forward Plus")
+config/icon="res://Player/icon.svg"
+
+[autoload]
+
+Multiplayer="*res://Scripts/multiplayer.gd"
+Enums="*res://Scripts/enum/enums.gd"
+LevelCore="*res://Scripts/level_core.gd"
+GDSync="*res://addons/GD-Sync/MultiplayerClient.gd"
+
+[display]
+
+window/size/viewport_width=1920
+window/size/viewport_height=1080
+window/size/mode=4
+window/stretch/mode="viewport"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/GD-Sync/plugin.cfg", "res://addons/nodetunnel/plugin.cfg")
+
+[gui]
+
+theme/custom="uid://2q3vbk6bmh2r"
+theme/custom_font="uid://ctac5wch5ukxl"
+
+[rendering]
+
+textures/canvas_textures/default_texture_filter=0
