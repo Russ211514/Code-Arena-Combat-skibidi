@@ -154,7 +154,7 @@ offset_bottom = 528.0
 grow_horizontal = 1
 grow_vertical = 1
 
-[node name="BattleLayout_Battle_QuestionPanel#VBoxContainer" type="VBoxContainer" parent="."]
+[node name="Question" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -162,22 +162,38 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -457.0
-offset_top = -337.0
+offset_top = -402.0
 offset_right = 457.0
-offset_bottom = -8.0
+offset_bottom = -15.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 20
 
-[node name="BattleLayout_Battle_QuestionPanel_VBoxContainer#QuestionLabel" type="Label" parent="BattleLayout_Battle_QuestionPanel#VBoxContainer"]
+[node name="QuestionPanel" type="Panel" parent="Question"]
 layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Question" type="Label" parent="Question/QuestionPanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -457.0
+offset_top = -192.5
+offset_right = 457.0
+offset_bottom = 192.5
+grow_horizontal = 2
+grow_vertical = 2
 size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 60
 text = "Question will appear here."
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 3
 
-[node name="BattleLayout_Battle_QuestionPanel_VBoxContainer#Choices" type="VBoxContainer" parent="."]
+[node name="QuestionButtons" type="VBoxContainer" parent="."]
 layout_mode = 0
 offset_left = 569.0
 offset_top = 540.0
@@ -185,19 +201,19 @@ offset_right = 757.0
 offset_bottom = 714.0
 theme_override_constants/separation = 10
 
-[node name="BattleLayout_Battle_QuestionPanel_VBoxContainer_Choices#ChoiceA" type="Button" parent="BattleLayout_Battle_QuestionPanel_VBoxContainer#Choices"]
+[node name="A" type="Button" parent="QuestionButtons"]
 layout_mode = 2
 text = "Choice A"
 
-[node name="BattleLayout_Battle_QuestionPanel_VBoxContainer_Choices#ChoiceB" type="Button" parent="BattleLayout_Battle_QuestionPanel_VBoxContainer#Choices"]
+[node name="B" type="Button" parent="QuestionButtons"]
 layout_mode = 2
 text = "Choice B"
 
-[node name="BattleLayout_Battle_QuestionPanel_VBoxContainer_Choices#ChoiceC" type="Button" parent="BattleLayout_Battle_QuestionPanel_VBoxContainer#Choices"]
+[node name="C" type="Button" parent="QuestionButtons"]
 layout_mode = 2
 text = "Choice C"
 
-[node name="BattleLayout_Battle_QuestionPanel_VBoxContainer_Choices#ChoiceD" type="Button" parent="BattleLayout_Battle_QuestionPanel_VBoxContainer#Choices"]
+[node name="D" type="Button" parent="QuestionButtons"]
 layout_mode = 2
 text = "Choice D"
 

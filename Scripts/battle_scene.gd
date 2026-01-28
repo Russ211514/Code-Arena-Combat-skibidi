@@ -36,12 +36,13 @@ var current_ability = null
 
 @onready var options: WindowDefault = $BattleLayout/Battle/Options
 @onready var options_menu: Menu = $BattleLayout/Battle/Options/Options
-@onready var question_panel: Panel = $BattleLayout/Battle/QuestionPanel
-@onready var question_label: Label = $BattleLayout/Battle/QuestionPanel/VBoxContainer/QuestionLabel
-@onready var choice_a: Button = $BattleLayout/Battle/QuestionPanel/VBoxContainer/Choices/ChoiceA
-@onready var choice_b: Button = $BattleLayout/Battle/QuestionPanel/VBoxContainer/Choices/ChoiceB
-@onready var choice_c: Button = $BattleLayout/Battle/QuestionPanel/VBoxContainer/Choices/ChoiceC
-@onready var choice_d: Button = $BattleLayout/Battle/QuestionPanel/VBoxContainer/Choices/ChoiceD
+@onready var question_panel: Panel = $Question/QuestionPanel
+@onready var question_label: Label = $Question/QuestionPanel/Question
+@onready var question_buttons: VBoxContainer = $QuestionButtons
+@onready var choice_a: Button = $QuestionButtons/A
+@onready var choice_b: Button = $QuestionButtons/B
+@onready var choice_c: Button = $QuestionButtons/C
+@onready var choice_d: Button = $QuestionButtons/D
 
 func _ready() -> void:
     options_menu.button_focus(0)
@@ -168,6 +169,7 @@ func update_ui():
 # Show the question panel with choices
 func show_question_panel(q):
     question_panel.visible = true
+    question_buttons.visible = true
     question_label.text = q["question"]
     var choices = q["choices"]
     choice_a.text = choices[0]
@@ -181,6 +183,7 @@ func show_question_panel(q):
 
 func hide_question_panel():
     question_panel.hide()
+    question_buttons.hide()
 
 func show_feedback(text: String):
        # Implement your feedback UI here
