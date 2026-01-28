@@ -141,62 +141,66 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="BattleEnemy" parent="BattleLayout/Battle/Enemies" instance=ExtResource("6_gt16y")]
-layout_mode = 0
-anchors_preset = 0
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_left = 1397.0
-offset_top = 511.00003
-offset_right = 1446.0
-offset_bottom = 566.0
-grow_horizontal = 1
-grow_vertical = 1
-
-
-# Question Panel UI
-[node name="QuestionPanel" type="Panel" parent="BattleLayout/Battle"]
-layout_mode = 0
-anchors_preset = 15
+layout_mode = 1
+anchors_preset = -1
 anchor_left = 0.25
 anchor_top = 0.7
 anchor_right = 0.75
 anchor_bottom = 0.95
-offset_left = 0.0
-offset_top = 0.0
-offset_right = 0.0
-offset_bottom = 0.0
+offset_left = 1388.0
+offset_top = 483.0
+offset_right = 1417.0
+offset_bottom = 528.0
+grow_horizontal = 1
+grow_vertical = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="BattleLayout/Battle/QuestionPanel"]
-anchors_preset = 15
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 1.0
-anchor_bottom = 1.0
+[node name="BattleLayout_Battle_QuestionPanel#VBoxContainer" type="VBoxContainer" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -457.0
+offset_top = -337.0
+offset_right = 457.0
+offset_bottom = -8.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 20
 
-[node name="QuestionLabel" type="Label" parent="BattleLayout/Battle/QuestionPanel/VBoxContainer"]
+[node name="BattleLayout_Battle_QuestionPanel_VBoxContainer#QuestionLabel" type="Label" parent="BattleLayout_Battle_QuestionPanel#VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 60
 text = "Question will appear here."
-autowrap_mode = 1
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Choices" type="VBoxContainer" parent="BattleLayout/Battle/QuestionPanel/VBoxContainer"]
+[node name="BattleLayout_Battle_QuestionPanel_VBoxContainer#Choices" type="VBoxContainer" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 569.0
+offset_top = 540.0
+offset_right = 757.0
+offset_bottom = 714.0
 theme_override_constants/separation = 10
 
-[node name="ChoiceA" type="Button" parent="BattleLayout/Battle/QuestionPanel/VBoxContainer/Choices"]
+[node name="BattleLayout_Battle_QuestionPanel_VBoxContainer_Choices#ChoiceA" type="Button" parent="BattleLayout_Battle_QuestionPanel_VBoxContainer#Choices"]
+layout_mode = 2
 text = "Choice A"
 
-[node name="ChoiceB" type="Button" parent="BattleLayout/Battle/QuestionPanel/VBoxContainer/Choices"]
+[node name="BattleLayout_Battle_QuestionPanel_VBoxContainer_Choices#ChoiceB" type="Button" parent="BattleLayout_Battle_QuestionPanel_VBoxContainer#Choices"]
+layout_mode = 2
 text = "Choice B"
 
-[node name="ChoiceC" type="Button" parent="BattleLayout/Battle/QuestionPanel/VBoxContainer/Choices"]
+[node name="BattleLayout_Battle_QuestionPanel_VBoxContainer_Choices#ChoiceC" type="Button" parent="BattleLayout_Battle_QuestionPanel_VBoxContainer#Choices"]
+layout_mode = 2
 text = "Choice C"
 
-[node name="ChoiceD" type="Button" parent="BattleLayout/Battle/QuestionPanel/VBoxContainer/Choices"]
+[node name="BattleLayout_Battle_QuestionPanel_VBoxContainer_Choices#ChoiceD" type="Button" parent="BattleLayout_Battle_QuestionPanel_VBoxContainer#Choices"]
+layout_mode = 2
 text = "Choice D"
 
 [connection signal="button_focused" from="BattleLayout/Battle/Options/Options" to="." method="_on_options_button_focused"]
