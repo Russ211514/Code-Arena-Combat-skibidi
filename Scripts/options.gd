@@ -28,68 +28,33 @@ func _ready() -> void:
 		var cols: int = self.columns
 		var rows: int = round(buttons.size() / cols)
 		var btm_range: Array = [rows * cols - cols, rows * cols - 1]
-	
-		#if clear_first:
-			#for button in buttons:
-				#button.focus_neighbor_top = null
-				#button.focus_neighbor_bottom = null
-		
-		# Get top and bottom rows of buttons.
-		for x in cols:
-#			print(buttons[x].text)
-			top_row.append(buttons[x])
-		for x in range(btm_range[0], btm_range[1]):
-			if x > buttons.size():
-#				print(buttons[x - cols].text)
-				bottom_row.append(buttons[x - cols])
-				continue
-#			print(buttons[x].text)
-			bottom_row.append(buttons[x])
-			
-		# Change their focus neighbors accordingly.
-		for x in cols:
-			var top_button: BaseButton = top_row[x]
-			var bottom_button: BaseButton = bottom_row[x]
-#			print(top_button)
-#			print(bottom_button)
-			if top_button == bottom_button:
-				continue
-			top_button.focus_neighbor_top = bottom_button.get_path()
-			bottom_button.focus_neighbor_bottom = top_button.get_path()
-		
+
+	# Ability Menu for Combat
+	class_name Menu
+	extends Container
+
+	signal ability_selected(ability: String)
+
+	@export var auto_wrap: bool = true
+	var index: int = 0
+
+	func _ready() -> void:
+	       for button in get_buttons():
+		       button.focused_entered.connect(on_button_focused.bind(button))
+		       button.pressed.connect(on_button_pressed.bind(button))
+
+	func get_buttons() -> Array:
+	       return get_children()
+
+	func button_focus(n: int = index) -> void:
+	       var button: BaseButton = get_buttons()[n]
+	       button.grab_focus()
+
+	func on_button_focused(button: BaseButton) -> void:
+	       # Optionally highlight or show info about the ability
+	       pass
+
+	func on_button_pressed(button: BaseButton) -> void:
+	       # Emit a signal with the selected ability name (button text)
+	       emit_signal("ability_selected", button.text)
 		# Repeat for left and right columns.
-		for i in range(0, buttons.size(), cols):
-			var left_button: BaseButton = buttons[1]
-			var right_button: BaseButton = buttons[1 + cols - 1]
-			left_button.focus_neighbor_left = right_button.get_path()
-			right_button.focus_neighbor_right = left_button.get_path()
-	elif _class.begins_with("VBox"):
-		var top_button: BaseButton = buttons.front()
-		var bottom_button: BaseButton = buttons.back()
-		top_button.focus_neighbor_top = bottom_button.get_path()
-		bottom_button.focus_neighbor_bottom = top_button.get_path()
-	elif _class.begins_with("HBox"):
-		var first_button: BaseButton = buttons.front()
-		var last_button: BaseButton = buttons.back()
-		first_button.focus_neighbor_left = last_button.get_path()
-		last_button.focus_neighbor_right = first_button.get_path()
-
-func get_buttons() -> Array:
-	return get_children()
-
-func connect_to_buttons(target: Object, _name: String = name) -> void:
-	var callable: Callable = Callable()
-	callable = Callable(target, "_on_" + _name + "_focused")
-	button_focused.connect(callable)
-	callable = Callable(target, "_on_" + _name + "_pressed")
-	button_pressed.connect(callable)
-
-func button_focus(n: int = index) -> void:
-	var button: BaseButton = get_buttons()[n]
-	button.grab_focus()
-
-func on_button_focused(button: BaseButton) -> void:
-	emit_signal("button_focused", button)
-
-func on_button_pressed(button: BaseButton) -> void:
-	emit_signal("button_pressed", button)
