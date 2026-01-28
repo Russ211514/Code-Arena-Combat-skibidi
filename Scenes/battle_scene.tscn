@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://dl7ijtea5htd7"]
+[gd_scene load_steps=14 format=3 uid="uid://dl7ijtea5htd7"]
 
 [ext_resource type="Script" uid="uid://ih6a02j5avg5" path="res://Scripts/battle_scene.gd" id="1_e5vbs"]
 [ext_resource type="Theme" uid="uid://2q3vbk6bmh2r" path="res://Themes/default_theme.tres" id="2_anwxn"]
@@ -7,7 +7,6 @@
 [ext_resource type="PackedScene" uid="uid://b2xgn7kfu62ix" path="res://Scenes/texture_button.tscn" id="5_3gnqe"]
 [ext_resource type="Script" uid="uid://hwl1a3d4oayi" path="res://Scripts/options.gd" id="5_20f6w"]
 [ext_resource type="PackedScene" uid="uid://7cngnj2uueoh" path="res://Scenes/battle_enemy.tscn" id="6_gt16y"]
-[ext_resource type="PackedScene" uid="uid://cjbitdt03r8sc" path="res://Scenes/health_bar.tscn" id="8_w4764"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gt16y"]
 
@@ -155,12 +154,50 @@ offset_bottom = 566.0
 grow_horizontal = 1
 grow_vertical = 1
 
-[node name="ProgressBar" parent="." instance=ExtResource("8_w4764")]
-layout_mode = 1
-offset_left = 191.0
-offset_top = 80.0
-offset_right = 817.0
-offset_bottom = 112.0
+
+# Question Panel UI
+[node name="QuestionPanel" type="Panel" parent="BattleLayout/Battle"]
+layout_mode = 0
+anchors_preset = 15
+anchor_left = 0.25
+anchor_top = 0.7
+anchor_right = 0.75
+anchor_bottom = 0.95
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 0.0
+offset_bottom = 0.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BattleLayout/Battle/QuestionPanel"]
+anchors_preset = 15
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+
+[node name="QuestionLabel" type="Label" parent="BattleLayout/Battle/QuestionPanel/VBoxContainer"]
+text = "Question will appear here."
+autowrap_mode = 1
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Choices" type="VBoxContainer" parent="BattleLayout/Battle/QuestionPanel/VBoxContainer"]
+theme_override_constants/separation = 10
+
+[node name="ChoiceA" type="Button" parent="BattleLayout/Battle/QuestionPanel/VBoxContainer/Choices"]
+text = "Choice A"
+
+[node name="ChoiceB" type="Button" parent="BattleLayout/Battle/QuestionPanel/VBoxContainer/Choices"]
+text = "Choice B"
+
+[node name="ChoiceC" type="Button" parent="BattleLayout/Battle/QuestionPanel/VBoxContainer/Choices"]
+text = "Choice C"
+
+[node name="ChoiceD" type="Button" parent="BattleLayout/Battle/QuestionPanel/VBoxContainer/Choices"]
+text = "Choice D"
 
 [connection signal="button_focused" from="BattleLayout/Battle/Options/Options" to="." method="_on_options_button_focused"]
 [connection signal="button_pressed" from="BattleLayout/Battle/Options/Options" to="." method="_on_options_button_pressed"]
