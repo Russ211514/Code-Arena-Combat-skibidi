@@ -26,7 +26,7 @@ func _ready() -> void:
        options_menu.button_focus(0)
        update_ui()
 
-func _on_options_button_focused(button: BaseButton) -> void:
+func _on_options_button_focused(_button: BaseButton) -> void:
        # Optionally highlight or show info about the ability
        pass
 
