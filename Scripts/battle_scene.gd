@@ -4,8 +4,8 @@ extends Control
 enum Ability { ATTACK, MAGIC, DEFEND, ULTIMATE }
 
 # Player and enemy stats
-var player_hp: int = 100
-var enemy_hp: int = 100
+var player_hp: int = 150
+var enemy_hp: int = 150
 var player_defending: bool = false
 var enemy_defending: bool = false
 var player_turn: bool = true
@@ -180,7 +180,7 @@ func show_question_panel(q):
     choice_d.disabled = false
 
 func hide_question_panel():
-    question_panel.visible = false
+    question_panel.hide()
 
 func show_feedback(text: String):
        # Implement your feedback UI here
