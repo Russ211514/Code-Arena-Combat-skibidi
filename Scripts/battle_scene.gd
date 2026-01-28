@@ -32,17 +32,17 @@ func _on_options_button_focused(button: BaseButton) -> void:
 
 func _on_options_button_pressed(button: BaseButton) -> void:
        if not player_turn:
-	       return
+           return
        var ability = button.text.to_lower()
        match ability:
-	       "attack":
-		       ask_question(Ability.ATTACK)
-	       "magic":
-		       ask_question(Ability.MAGIC)
-	       "defend":
-		       ask_question(Ability.DEFEND)
-	       "ultimate":
-		       ask_question(Ability.ULTIMATE)
+           "attack":
+               ask_question(Ability.ATTACK)
+           "magic":
+               ask_question(Ability.MAGIC)
+           "defend":
+               ask_question(Ability.DEFEND)
+           "ultimate":
+               ask_question(Ability.ULTIMATE)
 
 func ask_question(ability_type):
        current_question = questions[randi() % questions.size()]
@@ -52,35 +52,35 @@ func ask_question(ability_type):
 # Example: Call this when the player submits an answer
 func on_player_answer_submitted(answer: String, ability_type):
        if answer.strip_edges().to_lower() == current_question["answer"].to_lower():
-	       apply_ability(ability_type)
+           apply_ability(ability_type)
        else:
-	       # Wrong answer, lose turn
-	       show_feedback("Wrong! You lose your turn.")
-	       end_player_turn()
+           # Wrong answer, lose turn
+           show_feedback("Wrong! You lose your turn.")
+           end_player_turn()
 
 func apply_ability(ability_type):
        match ability_type:
-	       Ability.ATTACK:
-		       var dmg = 20
-		       if enemy_defending:
-			       dmg /= 2
-		       enemy_hp -= dmg
-		       show_feedback("Attack successful! Dealt %d damage." % dmg)
-	       Ability.MAGIC:
-		       var dmg = 30
-		       if enemy_defending:
-			       dmg /= 2
-		       enemy_hp -= dmg
-		       show_feedback("Magic successful! Dealt %d damage." % dmg)
-	       Ability.DEFEND:
-		       player_defending = true
-		       show_feedback("You brace for the next attack!")
-	       Ability.ULTIMATE:
-		       var dmg = 50
-		       if enemy_defending:
-			       dmg /= 2
-		       enemy_hp -= dmg
-		       show_feedback("Ultimate move! Dealt %d damage." % dmg)
+           Ability.ATTACK:
+               var dmg = 20
+               if enemy_defending:
+                   dmg /= 2
+               enemy_hp -= dmg
+               show_feedback("Attack successful! Dealt %d damage." % dmg)
+           Ability.MAGIC:
+               var dmg = 30
+               if enemy_defending:
+                   dmg /= 2
+               enemy_hp -= dmg
+               show_feedback("Magic successful! Dealt %d damage." % dmg)
+           Ability.DEFEND:
+               player_defending = true
+               show_feedback("You brace for the next attack!")
+           Ability.ULTIMATE:
+               var dmg = 50
+               if enemy_defending:
+                   dmg /= 2
+               enemy_hp -= dmg
+               show_feedback("Ultimate move! Dealt %d damage." % dmg)
        end_player_turn()
 
 func end_player_turn():
@@ -94,21 +94,21 @@ func enemy_action():
        # Simple AI: random action
        var action = randi() % 3
        match action:
-	       0:
-		       var dmg = 15
-		       if player_defending:
-			       dmg /= 2
-		       player_hp -= dmg
-		       show_feedback("Enemy attacks! You take %d damage." % dmg)
-	       1:
-		       enemy_defending = true
-		       show_feedback("Enemy is defending!")
-	       2:
-		       var dmg = 25
-		       if player_defending:
-			       dmg /= 2
-		       player_hp -= dmg
-		       show_feedback("Enemy uses magic! You take %d damage." % dmg)
+           0:
+               var dmg = 15
+               if player_defending:
+                   dmg /= 2
+               player_hp -= dmg
+               show_feedback("Enemy attacks! You take %d damage." % dmg)
+           1:
+               enemy_defending = true
+               show_feedback("Enemy is defending!")
+           2:
+               var dmg = 25
+               if player_defending:
+                   dmg /= 2
+               player_hp -= dmg
+               show_feedback("Enemy uses magic! You take %d damage." % dmg)
        end_enemy_turn()
 
 func end_enemy_turn():
